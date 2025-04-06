@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+      <div *ngFor="let tarjeta of tiendas" class="col-lg-3 col-md-4 col-sm-6 col-12  mt-3 mb-3">
+          <div class="card">
+            <div class="image">
+              <img [src]="updateRandomImage()" alt="Imagen de la página 1">
+            </div>
+            <div class="details">
+              <h5 class="title">{{ tarjeta.nameTienda }}</h5>
+              <p class="local">{{ tarjeta.local }}</p>
+              <p class="contact">{{ tarjeta.contact }}</p>
+              <a routerLink="filproductos/{{ tarjeta._id }}" class="btn btn-sm btn-outline-secondary">Visitar Página</a>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-12 text-center mt-4">
+      <a routerLink="filproductos" class="btn btn-lg btn-outline-secondary">Ver más tiendas</a>
+    </div>
+  </div>
+  
