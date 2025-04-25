@@ -17,9 +17,10 @@ export class RegisterComponent {
 
   userData: FormGroup = this.fb.group({
     name: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
-    confirmPassword: ['', Validators.required],
+    confirmPassword: ['', [Validators.required]]
+  }, { 
+    validator: this.passwordMatchValidator // Aquí agregamos el validador para las contraseñas
   });
 
   constructor(
@@ -48,5 +49,16 @@ export class RegisterComponent {
     } else {
       console.log("Formulario de userData no válido");
     }
+  }
+
+  // Validador personalizado para las contraseñas
+  private passwordMatchValidator(form: FormGroup) {
+    const password = form.get('password')?.value;
+    const confirmPassword = form.get('confirmPassword')?.value;
+
+    if (password && confirmPassword && password !== confirmPassword) {
+      return { mismatch: true };
+    }
+    return null; // Las contraseñas coinciden
   }
 }
